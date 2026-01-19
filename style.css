@@ -1,0 +1,350 @@
+/* style.css - Fully responsive portfolio with hover effects, animations, dark mode */
+/* Uses CSS variables for easy theming, mobile-first approach, simple animations */
+
+/* CSS Custom Properties (Variables) for light/dark mode */
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --accent: #3b82f6;
+  --border: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0,0,0.1);
+  --shadow-hover: 0 10px 25px -3px rgba(0, 0,0,0.2);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --accent: #60a5fa;
+  --border: #334155;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* NAVBAR - Sticky, responsive with hamburger */
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.right-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#darkModeBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+#darkModeBtn:hover {
+  background: var(--border);
+  transform: scale(1.1);
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+#nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+#nav-links a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+#nav-links a:hover {
+  color: var(--accent);
+}
+
+#nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+#nav-links a:hover::after {
+  width: 100%;
+}
+
+/* SECTIONS - Full height, centered, reveal animation */
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h1, h2, h3 {
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+h1 span {
+  background: linear-gradient(135deg, var(--accent), #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+/* SKILLS - Flex grid with hover scale */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.skills span {
+  background: var(--bg-secondary);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.skills span:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #60a5fa);
+  color: white;
+}
+
+/* PROJECTS - Grid cards with hover lift */
+#projects .project {
+  background: var(--bg-secondary);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  border: 1px solid var(--border);
+}
+
+#projects .project:hover {
+  transform: translateY(-15px);
+  box-shadow: var(--shadow-hover);
+}
+
+#projects .project h3 {
+  color: var(--accent);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* RESUME - Button hover pulse */
+#resumeBtn {
+  background: linear-gradient(135deg, var(--accent), #1d4ed8);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  display: block;
+  margin: 2rem auto 0;
+}
+
+#resumeBtn:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+  background: linear-gradient(135deg, #1d4ed8, var(--accent));
+}
+
+/* CONTACT - Social links hover bounce */
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.social a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.social a:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: var(--shadow-hover);
+  background: var(--accent);
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  background: var(--bg-secondary);
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+/* RESPONSIVE - Mobile First */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  #nav-links {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-secondary);
+    flex-direction: column;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  #nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  section {
+    min-height: 80vh;
+    padding: 2rem 0;
+  }
+
+  .skills {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #projects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 769px) {
+  #projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Landscape mobile fix */
+@media (max-height: 500px) and (orientation: landscape) {
+  section {
+    min-height: 100vh;
+    padding: 1rem 0;
+  }
+}
