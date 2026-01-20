@@ -229,6 +229,24 @@ p {
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
+#projects .project a {
+  background: var(--bg-secondary);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  text-decoration: none;
+  color: black;
+}
+#projects .project a:hover{
+   transform: translateY(-10px) scale(1.05);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #60a5fa);
+  color: white;
+}
 
 /* RESUME - Button hover pulse */
 #resumeBtn {
